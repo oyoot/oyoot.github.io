@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.collection == "notes" -%}
+        {%- assign tag_base_url = "/notes/tags/" -%}
+      {%- elsif page.collection == "thoughts" -%}
+        {%- assign tag_base_url = "/thoughts/tags/" -%}
+      {%- endif -%}
+      {%- if tag_base_url -%}
+        {%- include post-tags.html tags=page.tags tag_base_url=tag_base_url -%}
+      {%- endif -%}
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

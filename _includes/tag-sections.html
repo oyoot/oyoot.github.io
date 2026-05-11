@@ -1,0 +1,26 @@
+{%- assign all_tags = "" | split: "" -%}
+{%- for post in include.collection -%}
+  {%- for tag in post.tags -%}
+    {%- unless all_tags contains tag -%}
+      {%- assign all_tags = all_tags | push: tag -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- assign all_tags = all_tags | sort -%}
+{%- assign sorted_posts = include.collection | sort: "date" | reverse -%}
+
+{%- for tag in all_tags -%}
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title" id="{{ tag | slugify }}">{{ tag }}</h1>
+  </header>
+
+  <div class="post-content">
+    {%- for post in sorted_posts -%}
+      {%- if post.tags contains tag -%}
+        {%- include post-list-item.html post=post tag_base_url=include.tag_base_url -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</article>
+{%- endfor -%}

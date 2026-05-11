@@ -1,0 +1,6 @@
+{% if include.tags.size > 0 %}
+  &middot;
+  {% for tag in include.tags %}
+    <a class="post-tag" href="{{ include.tag_base_url | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+  {% endfor %}
+{% endif %}

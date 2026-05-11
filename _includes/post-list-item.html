@@ -1,0 +1,6 @@
+{%- assign post = include.post -%}
+<h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+<p class="post-meta">
+  {{ post.date | date: "%b %-d, %Y" }}
+  {%- include post-tags.html tags=post.tags tag_base_url=include.tag_base_url -%}
+</p>
