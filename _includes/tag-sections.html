@@ -9,6 +9,14 @@
 {%- assign all_tags = all_tags | sort -%}
 {%- assign sorted_posts = include.collection | sort: "date" | reverse -%}
 
+<div class="tag-index">
+  <ul>
+    {% for tag in all_tags %}
+      <li><a href="#{{ tag | slugify }}">{{ tag }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
 {%- for tag in all_tags -%}
 <article class="post">
   <header class="post-header">
@@ -24,3 +32,29 @@
   </div>
 </article>
 {%- endfor -%}
+
+<script>
+  (function() {
+    var tagIndex = document.querySelector('.tag-index');
+    var articles = document.querySelectorAll('article.post');
+
+    function filter() {
+      var tag = location.hash.slice(1);
+      if (!tag) {
+        if (tagIndex) {
+          tagIndex.style.display = '';
+        }
+        articles.forEach(function(a) { a.style.display = 'none'; });
+        return;
+      }
+      if (tagIndex) {
+        tagIndex.style.display = 'none';
+      }
+      articles.forEach(function(a) {
+        a.style.display = a.querySelector('.post-title').id === tag ? '' : 'none';
+      });
+    }
+    filter();
+    window.addEventListener('hashchange', filter);
+  })();
+  </script>
