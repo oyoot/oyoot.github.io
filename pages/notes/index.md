@@ -1,10 +1,16 @@
 ---
-layout: page
-title: notes
+layout: null
 permalink: /notes/
 ---
 
-{% assign sorted = site.notes | sort: "date" | reverse %}
-{% for post in sorted %}
-  {% include post-list-item.html post=post tag_base_url="/notes/tags/" %}
-{% endfor %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ '/' | relative_url }}">
+    <link rel="canonical" href="{{ '/' | absolute_url }}">
+  </head>
+  <body>
+    <p>Redirecting to <a href="{{ '/' | relative_url }}">home</a>.</p>
+  </body>
+</html>
