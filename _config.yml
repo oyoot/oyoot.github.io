@@ -29,6 +29,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:title/
+  explorations:
+    output: true
+    permalink: /explorations/:title/
   thoughts:
     output: true
     permalink: /thoughts/:title/
@@ -37,6 +40,11 @@ defaults:
   - scope:
       path: ""
       type: "notes"
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: "explorations"
     values:
       layout: post
   - scope:

@@ -2,13 +2,14 @@
 require "optparse"
 
 TYPES = {
-  "note"    => "_notes",
-  "thought" => "_thoughts",
+  "note"        => "_notes",
+  "exploration" => "_explorations",
+  "thought"     => "_thoughts",
 }
 
 tags = []
 parser = OptionParser.new do |opts|
-  opts.banner = "Usage: scripts/new <note|thought> \"Title\" [--tags \"tag1, tag2\"]"
+  opts.banner = "Usage: scripts/new <note|exploration|thought> \"Title\" [--tags \"tag1, tag2\"]"
   opts.on("--tags TAGS", "Comma-separated list of tags") do |t|
     tags = t.split(",").map(&:strip).reject(&:empty?)
   end

@@ -12,6 +12,8 @@ layout: default
       </time>
       {%- if page.collection == "notes" -%}
         {%- assign tag_base_url = "/notes/tags/" -%}
+      {%- elsif page.collection == "explorations" -%}
+        {%- assign tag_base_url = "/explorations/tags/" -%}
       {%- elsif page.collection == "thoughts" -%}
         {%- assign tag_base_url = "/thoughts/tags/" -%}
       {%- endif -%}
